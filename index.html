@@ -191,7 +191,7 @@
 <!-- Button 1 -->
 <a href="https://aj-restaurant-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="modern-btn btn-glow-blue w-[90%] h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center ml-4 group shadow-lg">
 <div class="absolute -left-6 w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 border-blue-600 shadow-lg z-10 group-hover:rotate-12 transition-transform">
-<img src="amai_akta_typography_logo_baniye_202604291223.png" alt="Logo" class="w-11 h-11 object-contain">
+<img src="bg_white_kore_dao_2K_202605111742.jpg.png" alt="Logo" class="w-11 h-11 object-contain">
 </div>
 <span class="text-white font-bold tracking-widest pl-6 uppercase text-sm">Details & Contact</span>
 </a>
@@ -236,15 +236,28 @@
 <!-- END: Footer Section -->
 
 <script>
+    const triggerAnimation = () => {
+        const logo = document.getElementById('aj-logo-container');
+        if (logo && !logo.classList.contains('animate-aj-logo')) {
+            logo.classList.add('animate-aj-logo');
+        }
+    };
+
+    // Trigger on scroll/intersection
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-aj-logo');
+                triggerAnimation();
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.1 });
 
-    observer.observe(document.getElementById('aj-logo-container'));
+    const logoEl = document.getElementById('aj-logo-container');
+    if (logoEl) {
+        observer.observe(logoEl);
+        // Also trigger fallback immediately after 300ms to guarantee animation works on page load
+        setTimeout(triggerAnimation, 300);
+    }
 </script>
 
 </body></html>
